@@ -11,7 +11,7 @@ input logic [31:0] ReadData
 
 logic ALUSrc, RegWrite, Zero, PCSrc;
 logic [1:0] ResultSrc, ImmSrc;
-logic [2:0] ALUControl;
+logic [3:0] ALUControl;
 
 controller c(
 .op(Instr[6:0]),
