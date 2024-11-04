@@ -7,6 +7,7 @@ output logic MemWrite
 );
 
 logic [31:0] PC, Instr, ReadData;
+logic [3:0] MemWriteByte;
 
 riscvsingle sc(
 .clk(clk),
@@ -16,7 +17,8 @@ riscvsingle sc(
 .MemWrite(MemWrite),
 .ALUResult(DataAdr),
 .WriteData(WriteData),
-.ReadData(ReadData)
+.ReadData(ReadData),
+.MemWriteByte(MemWriteByte)
 );
 
 imem imem(
@@ -29,7 +31,8 @@ dmem dmem(
 .WE(MemWrite),
 .DataAdr(DataAdr),
 .WriteData(WriteData),
-.ReadData(ReadData)
+.ReadData(ReadData),
+.web(MemWriteByte)
 );
 
 endmodule

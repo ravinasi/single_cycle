@@ -6,12 +6,14 @@ input logic [31:0] Instr,
 output logic MemWrite,
 output logic [31:0] ALUResult,
 output logic [31:0] WriteData,
-input logic [31:0] ReadData
+input logic [31:0] ReadData,
+output logic [3:0] MemWriteByte
 );
 
 logic ALUSrc, RegWrite, Zero, PCSrc;
 logic [1:0] ResultSrc, ImmSrc;
 logic [3:0] ALUControl;
+logic [3:0] RegWriteByte;
 
 controller c(
 .op(Instr[6:0]),
@@ -24,7 +26,9 @@ controller c(
 .ALUSrc(ALUSrc),
 .RegWrite(RegWrite),
 .ImmSrc(ImmSrc),
-.ALUControl(ALUControl)
+.ALUControl(ALUControl),
+.RegWriteByte(RegWriteByte),
+.MemWriteByte(MemWriteByte)
 );
 
 datapath dp(
@@ -41,7 +45,8 @@ datapath dp(
 .Instr(Instr),
 .ALUResult(ALUResult),
 .WriteData(WriteData),
-.ReadData(ReadData)
+.ReadData(ReadData),
+.RegWriteByte(RegWriteByte)
 ); 
 
 endmodule

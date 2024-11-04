@@ -12,7 +12,8 @@ output logic [31:0] PC,
 input logic [31:0] Instr,
 output logic [31:0] ALUResult,
 output logic [31:0] WriteData,
-input logic [31:0] ReadData
+input logic [31:0] ReadData,
+input logic [3:0] RegWriteByte
 ); 
 
 logic [31:0] PCNext, pcPlus4, PCTarget;
@@ -56,7 +57,8 @@ regfile rf(
 .a3(Instr[11:7]),
 .wd3(Result),
 .rd1(SrcA),
-.rd2(WriteData)
+.rd2(WriteData),
+.web(RegWriteByte)
 );
 
 extend ext(

@@ -9,11 +9,14 @@ output logic PCSrc,
 output logic ALUSrc,
 output logic RegWrite,
 output logic [1:0] ImmSrc,
-output logic [3:0] ALUControl
+output logic [3:0] ALUControl,
+output logic [3:0] RegWriteByte,
+output logic [3:0] MemWriteByte
 );
 
 logic [1:0] ALUOp;
-logic Branch, Jump;
+logic Branch;
+logic Jump;
 
 maindec md(
 .op(op),
@@ -24,7 +27,10 @@ maindec md(
 .RegWrite(RegWrite),
 .Jump(Jump),
 .ImmSrc(ImmSrc),
-.ALUOp(ALUOp)
+.ALUOp(ALUOp),
+.RegWriteByte(RegWriteByte),
+.MemWriteByte(MemWriteByte),
+.funct3(funct3)
 );
 
 ALUDec ad(
